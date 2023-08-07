@@ -12,4 +12,4 @@ class Products extends Component {
     );
   }
 } 
-export default Products; //fjfjjf
+export default Products;
