@@ -1,15 +1,11 @@
-import React, { Component } from "react";
+import React, { Component } from "react"; //imports the Component class form 'react' library which we use to extend
 class Products extends Component {
-  render() {
-    const products = ["Learning React", "Pro React", "Beginning React"];
-    const listProducts = products.map((product) => (
-      <li key={product.toString()}>{product}</li>
-    ));
+  render() { //we specify JSX will be inserted into the DOM
     return (
       <div>
-        <ul>{listProducts}</ul>
+        <h2>Products Beginning React</h2>
       </div>
     );
   }
-} 
-export default Products;
+}
+export default Products; //makes this component available for other files in app
