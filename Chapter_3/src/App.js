@@ -6,7 +6,7 @@ import Rating from './Rating';
 
 class App extends Component {
   render() {
-    const isValid = true;
+    // const isValid = true;
     return (
       <div>
         {/* <h1>My First React App!</h1>
