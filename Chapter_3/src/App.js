@@ -18,6 +18,7 @@ class App extends Component {
         <Rating rating="3" />
         <Rating rating="4" />
         <Rating rating="5" />
+        
       </div>
     );
   }
