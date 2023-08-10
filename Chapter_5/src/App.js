@@ -1,8 +1,8 @@
 import './App.css';
 import React, { Component } from 'react';
 import JumboTronComponent from './JumboTronComponent';
-import UserForm from './UserForm';
-import Products from './Products';
+// import UserForm from './UserForm';
+//import Products from './Products';
 
 class App extends Component {
   formatName(user) {
@@ -24,4 +24,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App
