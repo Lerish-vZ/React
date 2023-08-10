@@ -17,7 +17,7 @@ class App extends Component {
           This is a long sentence, and I want to insert content into the
           jumbotron component from the outside.
         </JumboTronComponent>
-        {/* <UserForm></UserForm> */}
+        <UserForm></UserForm>
         {/* <Products /> */}
       </div>
     );
