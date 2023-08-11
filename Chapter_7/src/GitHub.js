@@ -22,6 +22,10 @@ class GitHub extends Component {
     this.getGitHubData(this.state.searchTerm);
   }
 
+  handleChange(e) {
+    this.setState({ searchTerm: e.target.value });
+    }
+    
   getGitHubData(_searchTerm) {
     axios
       .get("https://api.github.com/search/users?q=" + _searchTerm) //use get of axios and give the url of API endpoint
