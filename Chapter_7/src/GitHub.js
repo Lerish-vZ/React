@@ -1,16 +1,27 @@
 import React, { Component } from "react";
 import axios from "axios"; // npm install axios
 import ReactLoading from "react-loading";
-import { Media, Form, FormGroup, FormControl, Button } from 'reactbootstrap';
+import { Media, Form, FormGroup, FormControl, Button } from "reactbootstrap";
 class GitHub extends Component {
   constructor() {
     super();
     this.state = {
       data: [],
-      isLoading: true,
+      searchTerm: "",
+      isLoading: false,
     };
-    this.getGitHubData("greg"); //returns promise which we need to subscribe to
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    //this.getGitHubData("greg"); //returns promise which we need to subscribe to
   }
+  handleSubmit(e) {
+    e.preventDefault();
+    this.setState({
+      isLoading: true,
+    });
+    this.getGitHubData(this.state.searchTerm);
+  }
+
   getGitHubData(_searchTerm) {
     axios
       .get("https://api.github.com/search/users?q=" + _searchTerm) //use get of axios and give the url of API endpoint
@@ -43,6 +54,18 @@ class GitHub extends Component {
     ));
     return (
       <div>
+        <Form inline onSubmit={this.handleSubmit}>
+          <Form.Group controlId="formInlineName">
+            <Form.Control
+              type="text"
+              value={this.state.searchTerm}
+              placeholder="Enter Search Term"
+              onChange={this.handleChange}
+            />
+            Beginning React
+          </Form.Group>{" "}
+          <Button type="submit">Search</Button>
+        </Form>
         <h3>GitHub Users Results</h3>
         {
           this.state.isLoading && (
