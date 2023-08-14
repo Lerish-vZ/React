@@ -1,7 +1,7 @@
 import "./App.css";
-//import JumboTronComponent from "./JumboTronComponent";
-//import UserForm from "./UserForm";
-//import Products from './Products';
+import JumboTronComponent from "./JumboTronComponent";
+import UserForm from "./UserForm";
+import Products from './Products';
 import React, { Component } from "react";
 import GitHub from "./GitHub";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
