@@ -43,7 +43,6 @@ class Header extends Component {
             <Route path="/github/user/:login/:id" component={GitHubUser} />
             <Route path="/github" component={GitHub} />
             <Route exact path="/" component={Home} />
-            <Route exact path="/Test" component={Test} />
             <Route path="/*" component={NotFound} />
           </Switch>
           {/* Each route has at least two properties: path, and a unique name we assign to our route + a component that specifies the associated component */}
@@ -57,19 +56,7 @@ class Home extends Component {
     return <div>Home</div>;
   }
 }
-class Test extends Component{
-  render() {
-    return(
-      <div>
-        <h1> This is my own path that I created called...</h1>
-        <h2> Test </h2>
-        <h3> Test </h3>
-        <h4> Test </h4>
-        <p> Test </p>
-      </div>
-    )
-  }
-}
+
 class NotFound extends Component {
   render() {
     return <div>Not Found</div>;
