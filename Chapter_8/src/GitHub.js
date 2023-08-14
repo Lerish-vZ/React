@@ -1,31 +1,18 @@
 import React, { Component } from "react";
 import axios from "axios"; // npm install axios
 import ReactLoading from "react-loading";
+import { Button } from 'react-bootstrap';
 import { Media, Form, FormGroup, FormControl, Button } from "react-bootstrap";
 class GitHub extends Component {
-  constructor() {
-    super();
-    this.state = {
-      data: [],
-      searchTerm: "",
-      isLoading: false,
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    //this.getGitHubData("greg"); //returns promise which we need to subscribe to
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
   }
-  handleSubmit(e) {
-    e.preventDefault();
-    this.setState({
-      isLoading: true,
-    });
-    this.getGitHubData(this.state.searchTerm);
+  handleClick(e) {
+    this.props.history.push("/github");
   }
 
-  handleChange(e) {
-    this.setState({ searchTerm: e.target.value });
-    }
-    
+
   getGitHubData(_searchTerm) {
     axios
       .get("https://api.github.com/search/users?q=" + _searchTerm) //use get of axios and give the url of API endpoint
@@ -41,7 +28,7 @@ class GitHub extends Component {
   render() {
     const listUsers = this.state.data.map((user) => (
       <Media key={user.id}>
-        <a href={user.html_url}>
+        <Nav.Link href={`/github/user/${user.login}/${user.id}`}>
           <img
             width={64}
             height={64}
@@ -49,10 +36,14 @@ class GitHub extends Component {
             src={user.avatar_url}
             alt="Generic placeholder"
           />
-        </a>
+        </Nav.Link>
         <Media.Body>
-          <h5>Login: {user.login}</h5>
-          <p>Id: {user.id}</p>
+          <h1>User Login: {this.props.match.params.login}</h1>
+          {/* this.props.match.params is an object that holds all the values passed through parameters */}
+          <h2>User Id: {this.props.match.params.id}</h2>`
+          <Button variant="primary" onClick={this.handleClick}>
+            Go to GitHub Users
+          </Button>
         </Media.Body>
       </Media>
     ));
