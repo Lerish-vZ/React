@@ -1,5 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
+import * as firebase from 'firebase';
+
+class App extends Component {
+  constructor(){
+  super();
+  console.log(firebase);
+  }
+};
 
 function App() {
   return (
