@@ -20,10 +20,11 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+
 class App extends Component {
   constructor() {
     super();
-    console.log(firebaseConfig);
+    console.log(app);
   }
   render() {
     return (
