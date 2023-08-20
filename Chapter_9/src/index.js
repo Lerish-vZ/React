@@ -8,7 +8,6 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 
 
-
 var config = {
   apiKey: "AIzaSyAyzOM04_YdHDnD2qHkS8bYcVIz2-VMpGA",
   authDomain: "chapter9-5ee23.firebaseapp.com",
