@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+//import React, { Component } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, Nav } from "react-bootstrap";
 
 class User extends Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class User extends Component {
     this.state = {
       users: [],
     };
-    this.add = this.add.bind(this);
+    // this.add = this.add.bind(this);
   }
   componentDidMount() {
     firebase
@@ -29,9 +29,9 @@ class User extends Component {
       });
   }
 
-  add(e) {
-    this.props.history.push("/add");
-    }
+  // add(e) {
+  //   this.props.history.push("/add");
+  //   }
 
   render() {
     const listUsers = this.state.users.map((user) => (
@@ -44,9 +44,8 @@ class User extends Component {
     ));
     return (
       <div>
-        <Button variant="primary" onClick={this.add}>
+        <Nav.Link href="/add"><Button variant="primary" onClick={this.add}></Button></Nav.Link>
           Add
-        </Button>
         <Table striped bordered hover>
           <thead>
             <tr>
