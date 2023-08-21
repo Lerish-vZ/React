@@ -11,6 +11,7 @@ class User extends Component {
     this.state = {
       users: [],
     };
+    this.add = this.add.bind(this);
   }
   componentDidMount() {
     firebase
@@ -28,6 +29,11 @@ class User extends Component {
         });
       });
   }
+
+  add(e) {
+    this.props.history.push("/add");
+    }
+
   render() {
     const listUsers = this.state.users.map((user) => (
       <tr key={user.key}>
