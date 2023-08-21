@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 var config = {
   apiKey: "AIzaSyAyzOM04_YdHDnD2qHkS8bYcVIz2-VMpGA",
