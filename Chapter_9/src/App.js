@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import User from './User';
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
-import 'firebase/compat/database';
+import User from "./User";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
+import "firebase/compat/database";
 
 class App extends Component {
   constructor() {
@@ -14,9 +15,22 @@ class App extends Component {
   render() {
     return (
       <div>
-        <User />
+        <BrowserRouter>
+          <div>
+            <Switch>
+              <Route exact path="/" component={User} />
+              <Route path="/*" component={NotFound} />
+            </Switch>
+          </div>
+        </BrowserRouter>
       </div>
     );
   }
 }
 export default App;
+
+class NotFound extends Component {
+  render() {
+    return <div>Not Found</div>;
+  }
+}
