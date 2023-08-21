@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-import { Table } from 'react-bootstrap';
+import { Table } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
 
 class User extends Component {
   constructor(props) {
@@ -38,6 +39,9 @@ class User extends Component {
     ));
     return (
       <div>
+        <Button variant="primary" onClick={this.add}>
+          Add
+        </Button>
         <Table striped bordered hover>
           <thead>
             <tr>
