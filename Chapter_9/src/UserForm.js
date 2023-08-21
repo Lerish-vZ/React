@@ -1,42 +1,44 @@
-import React, { Component } from "react";
+// import React, { Component } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
+import {useNavigate} from 'react-router-dom';
 
-class UserForm extends Component {
-  title;
-  id;
+function UserForm() {
 
-  constructor(props) {
-    super(props);
-    this.id = this.props.match.params.id;
-    this.title = "New User";
-    this.state = {
-      username: "",
-      email: "",
-    };
+  const navigate = useNavigate();
+  // title;
+  // id;
 
-    if (this.id) {
-      this.title = "Edit User";
-    }
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.id = this.props.match.params.id;
+  //   this.title = "New User";
+  //   this.state = {
+  //     username: "",
+  //     email: "",
+  //   };
 
-  componentDidMount() {
-    if (this.id) {
-      firebase
-        .database()
-        .ref("/" + this.id)
-        .on("value", (snapshot) => {
-          this.setState({
-            username: snapshot.val().username,
-            email: snapshot.val().email,
-          });
-        });
-    }
-  }
+  //   if (this.id) {
+  //     this.title = "Edit User";
+  //   }
+  // }
 
-  render() {
+  // componentDidMount() {
+  //   if (this.id) {
+  //     firebase
+  //       .database()
+  //       .ref("/" + this.id)
+  //       .on("value", (snapshot) => {
+  //         this.setState({
+  //           username: snapshot.val().username,
+  //           email: snapshot.val().email,
+  //         });
+  //       });
+  //   }
+  // }
+
     return (
       <div>
         <h1>{this.title}</h1>
@@ -85,7 +87,7 @@ class UserForm extends Component {
                     username: values.username,
                     email: values.email,
                   })
-                  .then(() => this.props.history.push("/"));
+                  .then(() => navigate("/",{replace: true}));
               }
 
               setSubmitting(false);
@@ -111,6 +113,5 @@ class UserForm extends Component {
       </div>
     );
   }
-}
 
 export default UserForm;
