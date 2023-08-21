@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as firebase from "firebase";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
 
 class UserForm extends Component {
   title;
@@ -92,13 +94,13 @@ class UserForm extends Component {
         >
           {({ isSubmitting }) => (
             <Form>
-              <Field type="email" name="email" />
-              <span style={{ color: "red", fontWeight: "bold" }}>
-                <ErrorMessage name="email" component="div" />
-              </span>
-              <Field type="username" name="username" />
+              <Field type="username" name="username" placeholder="username"/>
               <span style={{ color: "red", fontWeight: "bold" }}>
                 <ErrorMessage name="username" component="div" />
+              </span>
+              <Field type="email" name="email" placeholder="email"/>
+              <span style={{ color: "red", fontWeight: "bold" }}>
+                <ErrorMessage name="email" component="div" />
               </span>
               <button type="submit" disabled={isSubmitting}>
                 Submit
