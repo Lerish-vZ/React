@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-import { Table, Button, Nav } from "react-bootstrap";
+import { Table, Button, Modal } from "react-bootstrap";
 
 class User extends Component {
   constructor(props) {
@@ -31,9 +31,16 @@ class User extends Component {
       });
   }
 
-  // add(e) {
-  //   this.props.history.push("/add");
-  //   }
+  add(e) {
+    this.props.history.push("/add");
+    }
+
+    openDeleteDialog(user){
+      this.setState({
+        showDeleteDialog: true,
+        selectedUser: user
+      });
+    }
 
   render() {
     const listUsers = this.state.users.map((user) => (
@@ -62,6 +69,19 @@ class User extends Component {
           </thead>
           <tbody>{listUsers}</tbody>
         </Table>
+        <Modal show={this.state.showDeleteDialog} onHide={this.closeDeleteDialog}>
+          <Modal.Header closeButton>
+            <Modal.Title>Delete User</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>Are you sure you want to delete {this.state.selectedUser.username}?</p>
+            <hr/>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.delete}>Delete</Button>
+            <Button onClick={this.closeDeleteDialog}>Close</Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     );
   }
