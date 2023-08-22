@@ -12,7 +12,9 @@ class User extends Component {
       showDeleteDialog: false,
       selectedUser: {},
     };
-    // this.add = this.add.bind(this);
+    this.add = this.add.bind(this);
+    this.closeDeleteDialog = this.closeDeleteDialog.bind(this);
+    this.delete = this.delete.bind(this);
   }
   componentDidMount() {
     firebase
@@ -39,6 +41,13 @@ class User extends Component {
     this.setState({
       showDeleteDialog: true,
       selectedUser: user,
+    });
+  }
+
+  closeDeleteDialog() {
+    this.setState({
+      showDeleteDialog: false,
+      selectedUser: {},
     });
   }
 
