@@ -10,7 +10,7 @@ class User extends Component {
     this.state = {
       users: [],
       showDeleteDialog: false,
-      selectedUser: {}
+      selectedUser: {},
     };
     // this.add = this.add.bind(this);
   }
@@ -33,14 +33,29 @@ class User extends Component {
 
   add(e) {
     this.props.history.push("/add");
-    }
+  }
 
-    openDeleteDialog(user){
-      this.setState({
-        showDeleteDialog: true,
-        selectedUser: user
+  openDeleteDialog(user) {
+    this.setState({
+      showDeleteDialog: true,
+      selectedUser: user,
+    });
+  }
+
+  delete(e) {
+    firebase
+      .database()
+      .ref("/" + this.state.selectedUser.key)
+      .remove()
+      .then((x) => {
+        console.log("SUCCESS");
+        this.closeDeleteDialog();
+      })
+      .catch((error) => {
+        alert("Could not delete the user.");
+        console.log("ERROR", error);
       });
-    }
+  }
 
   render() {
     const listUsers = this.state.users.map((user) => (
@@ -49,15 +64,18 @@ class User extends Component {
         <td>{user.email}</td>
         <td>Edit</td>
         <td>
-          <Button
-          onClick={this.openDeleteDialog.bind(this,user)}>Remove</Button>
-          </td>
+          <Button onClick={this.openDeleteDialog.bind(this, user)}>
+            Remove
+          </Button>
+        </td>
       </tr>
     ));
     return (
       <div>
-        <Nav.Link href="/add"><Button variant="primary" onClick={this.add}></Button></Nav.Link>
-          Add
+        <Nav.Link href="/add">
+          <Button variant="primary" onClick={this.add}></Button>
+        </Nav.Link>
+        Add
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -69,13 +87,19 @@ class User extends Component {
           </thead>
           <tbody>{listUsers}</tbody>
         </Table>
-        <Modal show={this.state.showDeleteDialog} onHide={this.closeDeleteDialog}>
+        <Modal
+          show={this.state.showDeleteDialog}
+          onHide={this.closeDeleteDialog}
+        >
           <Modal.Header closeButton>
             <Modal.Title>Delete User</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <p>Are you sure you want to delete {this.state.selectedUser.username}?</p>
-            <hr/>
+            <p>
+              Are you sure you want to delete {this.state.selectedUser.username}
+              ?
+            </p>
+            <hr />
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.delete}>Delete</Button>
