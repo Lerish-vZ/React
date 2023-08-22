@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-import { Table, Button, Modal } from "react-bootstrap";
-import { Link } from 'react-router-dom';
+import { Table, Button, Modal, Link } from "react-bootstrap";
 
 class User extends Component {
   constructor(props) {
