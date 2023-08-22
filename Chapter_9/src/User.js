@@ -9,6 +9,8 @@ class User extends Component {
     super(props);
     this.state = {
       users: [],
+      showDeleteDialog: false,
+      selectedUser: {}
     };
     // this.add = this.add.bind(this);
   }
@@ -39,7 +41,10 @@ class User extends Component {
         <td>{user.username}</td>
         <td>{user.email}</td>
         <td>Edit</td>
-        <td>Remove</td>
+        <td>
+          <Button
+          onClick={this.openDeleteDialog.bind(this,user)}>Remove</Button>
+          </td>
       </tr>
     ));
     return (
