@@ -16,6 +16,7 @@ class User extends Component {
     this.closeDeleteDialog = this.closeDeleteDialog.bind(this);
     this.delete = this.delete.bind(this);
   }
+
   componentDidMount() {
     firebase
       .database()
@@ -83,10 +84,7 @@ class User extends Component {
     ));
     return (
       <div>
-        <Nav.Link href="/add">
-          <Button variant="primary" onClick={this.add}></Button>
-        </Nav.Link>
-        Add
+        <Button variant="primary" onClick={this.add}>Add</Button> 
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -107,8 +105,7 @@ class User extends Component {
           </Modal.Header>
           <Modal.Body>
             <p>
-              Are you sure you want to delete {this.state.selectedUser.username}
-              ?
+              Are you sure you want to delete {this.state.selectedUser.username}?
             </p>
             <hr />
           </Modal.Body>
