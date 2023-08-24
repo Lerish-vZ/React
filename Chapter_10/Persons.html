@@ -6,57 +6,81 @@
   </head>
   <body>
     <script>
-        function addPerson(id, name, age) { //functions are known as 'Action Creators', return action object
-            return { //functions return an action object
-                type: "ADD",
-                personData: { //payload value of action
-                    id: id,
-                    name: name, 
-                    age: age
-                }
-            }
-        }
-
-        function removePerson(id) {
-            return {
-                type: "REMOVE",
-                personId: id //payload value of action
-            }
-        }
-
-        //actions specify the 'what' is to be done
-        //the 'How' is left to reduce. Acts as intermediary between store and actions 
-
-        const initialState ={
-            persons: []
+      function addPerson(id, name, age) {
+        //functions are known as 'Action Creators', return action object
+        return {
+          //functions return an action object
+          type: "ADD",
+          personData: {
+            //payload value of action
+            id: id,
+            name: name,
+            age: age,
+          },
         };
+      }
 
-        function reducer(state, action) { //gets action thus has access to payload and type
-            if (state === undefined) {
-                state = initialState;
-            }
-            if (action.type === "ADD") { //we do not use push. Reducers are not allowed to mutate persons
-                const newPerson = {
-                    id: action.personData.id,
-                    name: action.personData.name,
-                    age: action.personData.age
-                }
-                return {
-                    ...state, //creates copy of existing state
-                    persons: state.persons.concat(newPerson) //returns new array with old values along with new person
-                }
-    
-            } else if (action.type === "REMOVE") {
-                return {
-                    ...state,
-                    persons: state.persons.filter(person => person.id !== action.personId) //returns new array with specified person removed using filter
-                }
-            } else {
-                return state;
-            }
+      function removePerson(id) {
+        return {
+          type: "REMOVE",
+          personId: id, //payload value of action
+        };
+      }
+
+      //actions specify the 'what' is to be done
+      //the 'How' is left to reduce. Acts as intermediary between store and actions
+
+      const initialState = {
+        persons: [],
+      };
+
+      function reducer(state, action) {
+        //gets action thus has access to payload and type
+        if (state === undefined) {
+          state = initialState;
         }
+        if (action.type === "ADD") {
+          //we do not use push. Reducers are not allowed to mutate persons
+          const newPerson = {
+            id: action.personData.id,
+            name: action.personData.name,
+            age: action.personData.age,
+          };
+          return {
+            ...state, //creates copy of existing state
+            persons: state.persons.concat(newPerson), //returns new array with old values along with new person
+          };
+        } else if (action.type === "REMOVE") {
+          return {
+            ...state,
+            persons: state.persons.filter(
+              (person) => person.id !== action.personId
+            ), //returns new array with specified person removed using filter
+          };
+        } else {
+          return state;
+        }
+      }
 
-        //should not modify state but return new one.
+      //should not modify state but return new one.
+
+
+      var store = Redux.createStore(reducer); //we link our actions, reducers and store
+
+      //to see store's state each time application state is modified:
+      store.subscribe(showState);
+
+      function showState() {
+        console.log(store.getState())
+      }
+
+      store.dispatch(addPerson(1, "Greg", 5));
+      store.dispatch(addPerson(2, "Carol", 3));
+      store.dispatch(addPerson(3, "Gabriel", 6));
+      store.dispatch(addPerson(4, "Fred", 8));
+      store.dispatch(removePerson(4));
+
+
     </script>
   </body>
 </html>
