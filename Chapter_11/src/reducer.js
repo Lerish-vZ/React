@@ -1,17 +1,17 @@
 // Reducer
 // Reducer
-function cartReducer(state, action) {
-  if (state === undefined) {
+function cartReducer(state, action) { 
+  if (state === undefined) { //initialize state
     return {
       totalCost: 0,
       productCart: [],
     };
   }
-  switch (action.type) {
+  switch (action.type) { //use switch to handle two action types (addProduct & deleteProduct)
     case "addProduct":
       return {
         ...state,
-        totalCost: state.totalCost + parseInt(action.productData.productPrice),
+        totalCost: state.totalCost + parseInt(action.productData.productPrice), //parseInt is used to convert string to numeric in order to add & subtract
         productCart: state.productCart.concat({
           productName: action.productData.productName,
           productPrice: action.productData.productPrice,
