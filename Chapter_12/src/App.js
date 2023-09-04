@@ -38,6 +38,13 @@ const App = () => {
   const postsUrl = "https://jsonplaceholder.typicode.com/posts";
   const todosUrl = "https://jsonplaceholder.typicode.com/todos";
   const [requested, setRequested] = useState(postsUrl); //set initial value of requested to postsUrl
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch(requested)
+      .then((response) => response.json())
+      .then((data) => setData(data));
+  }, [requested]);
 
   return (
     <div>
@@ -49,6 +56,11 @@ const App = () => {
       </Button>
       <br />
       Requested: {requested}
+      <ul>
+        {data.map((el) => (
+          <li key={el.id}>{el.title}</li>
+        ))}
+      </ul>
     </div>
   );
 };
