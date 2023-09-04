@@ -1,5 +1,6 @@
 import React from "react";
 import useFetch from "./useFetch";
+
 const Users = () => {
   const users = useFetch("https://jsonplaceholder.typicode.com/users");
   return (
@@ -8,7 +9,7 @@ const Users = () => {
         (
           el //
         ) => (
-          <li key={el.id}>{el.name}></li>
+          <li key={el.id}>{el.name}</li>
         )
       )}
     </ul>
