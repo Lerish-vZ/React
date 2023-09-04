@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "react-bootstrap";
+import useFetch from './useFetch';
 
 // class App extends React.Component {
 //   state = { requested: "" };
@@ -38,13 +39,8 @@ const App = () => {
   const postsUrl = "https://jsonplaceholder.typicode.com/posts";
   const todosUrl = "https://jsonplaceholder.typicode.com/todos";
   const [requested, setRequested] = useState(postsUrl); //set initial value of requested to postsUrl
-  const [data, setData] = useState([]);
+  const data = useFetch(requested);
 
-  useEffect(() => {
-    fetch(requested)
-      .then((response) => response.json())
-      .then((data) => setData(data));
-  }, [requested]);
 
   return (
     <div>
