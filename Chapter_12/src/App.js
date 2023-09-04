@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "react-bootstrap";
 import useFetch from './useFetch';
+import Users from './Users';
 
 // class App extends React.Component {
 //   state = { requested: "" };
@@ -44,6 +45,7 @@ const App = () => {
 
   return (
     <div>
+      <Users />
       <Button variant="link" onClick={() => setRequested(postsUrl)}>
         Posts
       </Button>
