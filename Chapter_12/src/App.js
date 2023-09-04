@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Button } from "react-bootstrap";
+class App extends React.Component {
+  state = { requested: "" };
+  render() {
+    return (
+      <div>
+        <Button
+          variant="link"
+          onClick={() =>
+            this.setState({
+              requested: "https://jsonplaceholder.typicode.com/posts",
+            })
+          }
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          Posts
+        </Button>
+        <Button
+          variant="link"
+          onClick={() =>
+            this.setState({
+              requested: "https://jsonplaceholder.typicode.com/todos",
+            })
+          }
+        >
+          Todos
+        </Button>
+        <br />
+        Requested: {this.state.requested}
+      </div>
+    );
+  }
 }
-
 export default App;
