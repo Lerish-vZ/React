@@ -10,7 +10,7 @@ import "firebase/compat/database";
 class App extends Component {
   constructor() {
     super();
-    console.log(firebase);
+    console.log(firebase); 
   }
 
   render() {
